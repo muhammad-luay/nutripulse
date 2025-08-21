@@ -65,3 +65,6 @@ integration_test_results.json
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Large data files
+water/
