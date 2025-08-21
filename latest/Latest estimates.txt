@@ -1,0 +1,29 @@
+Latest estimates
+Child malnutrition estimates for the indicators stunting, severe wasting, wasting, overweight and underweight describe the magnitude and patterns of under- and overnutrition.  The UNICEF-WHO-World Bank Joint Child Malnutrition Estimates (JME) inter-agency group regularly updates  the global and regional estimates in prevalence and numbers for each indicator. 
+
+The Joint Child Malnutrition Estimates (JME) 2025 edition reveals that, globally, we are off track to  achieve the 2025 World Health Assembly (WHA) global nutrition targets and the 2030 Sustainable Development Goal (SDG) 2 targets. Only about a quarter of all countries are ‘on track’ to halve the number of children under age 5 affected by stunting by 2030. Even fewer countries are expected to reach the 2030 target of 3 percent prevalence for overweight among children under age 5, with just 1 in 6 countries currently ‘on track’. More intensive efforts are required if the world is to achieve the global target of reducing the number of stunted children to 90 million by 2030. With current progress, the 2030 target will be missed by 46.0 million children.
+
+2025 JME global graph
+In 2024, globally, 150.2 million children under age  5 were stunted, 42.8 million were wasted, and 35.5 million were overweight. Stunting has been declining steadily over the last decade, with 150.2 million, or 23.2 percent, of children under age 5 affected in 2024 worldwide. Nearly all stunted children lived in Asia (51 percent of the global share) and Africa (43 percent of the global share). In 2024, an estimated 6.6 percent of children under age 5 were affected by wasting, of which 12.2 million (1.9 percent) were suffering from severe wasting. More than three-quarters of all children with severe wasting lived in Asia and another 22 percent lived in Africa. Current levels of overweight have persisted for the last two decades in almost every region. There are now 35.5 million children under age 5 living with overweight globally, an increase of 2.4 million since 2000.
+
+Gaps in the available data in some regions make it challenging to accurately assess progress towards global targets. Regular data collection is therefore critical to monitor and analyse country, regional and global progress on child malnutrition moving forward.
+
+The JME 2025 edition also introduces sex-disaggregated country, regional and global estimates for stunting and overweight for the first time. 
+
+
+Levels and trends in child malnutrition: UNICEF/WHO/World Bank Group joint child malnutrition estimates: key findings of the 2025 edition
+21 July 2025
+Levels and trends in child malnutrition: UNICEF/WHO/World Bank Group joint child...
+The key findings 2025 Edition includes global, regional, and country trends from 2000-2024 for stunting and overweight. For wasting and severe wasting,...
+Download
+Read More
+Joint data set including surveys estimates (2025 edition)
+This dataset consists of 1234 data sources from 164 countries and territories, which were standardized for analysis purposes. Estimates in the “Primary_data” sheet are presented unadjusted and present, for the first time, disaggregates by sex (column labeled as "Stratifier"). Estimates in the "Age-Adjusted" sheet are adjusted where necessary to be nationally representative and to cover the age range of 0-5 years. The adjustments are specified in the Notes sheet. As a result of making these adjustments, prevalence might be slightly different from the survey results reported elsewhere. The "Other Sources" sheet includes the data sources that have been assessed by the JME group and not included in the Joint Malnutrition Estimates Database.
+
+Joint model-based estimates for stunting and overweight (2025 edition)
+This file includes model-based estimates for stunting and overweight based on all input data as included in the joint survey data set (above). Estimates are provided for 163 countries with at least one data point between 2000 and 2024 and for the first time include sex disaggregation. These are the estimates used for monitoring the nutrition targets for these two indicators.
+
+Regional and global joint estimates tables (2025 edition)
+JME Child Malnutrition Estimates in the WHO Global Health Observatory (GHO)
+
+The dashboard generates graphs and charts, using the latest joint estimates for stunting, overweight, wasting and severe wasting. Prevalence and numbers are presented by different country groupings (UN, SDG, UNICEF, WHO, World Bank income groups published in July 2022 and World Bank regions).

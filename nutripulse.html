@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NutriPulse – Uganda Nutrition Enhanced Dashboard</title>
+    <meta
+      name="description"
+      content="NutriPulse: A national command center for nutrition intelligence and impact optimization in Uganda. Real-time analytics, predictive modeling, and supply chain optimization for decision-makers."
+    />
+    <meta
+      property="og:title"
+      content="NutriPulse – Uganda Nutrition Enhanced Dashboard"
+    />
+    <meta
+      property="og:description"
+      content="Transforming Uganda’s nutrition landscape with real-time intelligence and impact optimization."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0A0E1A" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23A5F3FC' viewBox='0 0 24 24'%3E%3Cpath d='M3 12a9 9 0 1118 0 9 9 0 01-18 0zm9-7a7 7 0 100 14 7 7 0 000-14zm0 2a1 1 0 011 1v2.382l2.447 2.447a1 1 0 01-1.414 1.414l-2.74-2.74A1 1 0 0111 11V8a1 1 0 011-1z'/%3E%3C/svg%3E"
+    />
+    <style>
+      /* ========= CSS RESET (trimmed) ========= */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html:focus-within {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      img,
+      svg,
+      video,
+      canvas {
+        display: block;
+        max-width: 100%;
+      }
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+      :root {
+        --bg: #090d17; /* page background */
+        --bg-soft: #0e1324; /* surfaces */
+        --bg-elev: #121938; /* elevated cards */
+        --text: #e6eaf3; /* primary text */
+        --muted: #a6b0c2; /* muted text */
+        --line: #1e2442; /* dividers */
+        --accent: #4f46e5; /* indigo */
+        --accent-2: #10b981; /* green */
+        --accent-3: #06b6d4; /* cyan */
+        --accent-4: #a855f7; /* purple */
+        --warn: #f59e0b; /* amber */
+        --danger: #ef4444; /* red */
+        --success: #22c55e; /* green */
+        --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+        --radius: 14px;
+        --radius-sm: 10px;
+        --container: 1200px;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #0b1020;
+        }
+      }
+      body {
+        background: radial-gradient(
+            1200px 600px at 10% -10%,
+            rgba(79, 70, 229, 0.25),
+            transparent 50%
+          ),
+          radial-gradient(
+            1000px 500px at 90% 10%,
+            rgba(6, 182, 212, 0.18),
+            transparent 55%
+          ),
+          linear-gradient(180deg, #070b14, #0b1224 40%, #0a0e1a 100%);
+        color: var(--text);
+        font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial,
+          sans-serif;
+      }
+      /* ====== Layout ====== */
+      .container {
+        max-width: var(--container);
+        margin-inline: auto;
+        padding: clamp(16px, 2vw, 28px);
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: rgba(8, 13, 27, 0.7);
+        backdrop-filter: saturate(160%) blur(16px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      nav .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand__logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: conic-gradient(
+          from 45deg,
+          var(--accent),
+          var(--accent-3),
+          var(--accent-4),
+          var(--accent-2),
+          var(--accent)
+        );
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05) inset;
+      }
+      .brand__title {
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+      .nav__links {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .nav__links a {
+        color: var(--muted);
+        text-decoration: none;
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+      .nav__links a:is(:hover, :focus) {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        outline: none;
+      }
+      .btn,
+      button {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn--primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-4));
+        color: white;
+        box-shadow: var(--shadow);
+      }
+      .btn--ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+      .btn--accent {
+        background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+        color: #04140e;
+      }
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+      }
+      .skip-link:focus {
+        left: 8px;
+        top: 8px;
+        background: black;
+        padding: 8px 12px;
+        border-radius: 8px;
+        z-index: 90;
+      }
+      /* ====== Hero ====== */
+      .hero {
+        position: relative;
+        overflow: hidden;
+      }
+      .hero__wrap {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 36px;
+        align-items: center;
+      }
+      .hero__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+      }
+      .hero__title {
+        font-size: clamp(32px, 4vw, 54px);
+        line-height: 1.1;
+        margin: 0.5rem 0;
+      }
+      .hero__subtitle {
+        font-size: clamp(16px, 1.5vw, 19px);
+        color: #cdd6e9;
+        max-width: 60ch;
+      }
+      .hero__cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+      .hero__viz {
+        min-height: 340px;
+        border-radius: var(--radius);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+      .grid--3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .grid--4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .metric {
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, #0d1430, #0b1022);
+        padding: 16px;
+        border-radius: 12px;
+      }
+      .metric h4 {
+        margin: 0 0 6px 0;
+        font-size: 0.95rem;
+        color: #b9c3da;
+      }
+      .metric__value {
+        font-size: clamp(18px, 2.5vw, 26px);
+        font-weight: 800;
+      }
+      .metric small {
+        color: var(--muted);
+      }
+      /* ====== Sections ====== */
+      section {
+        scroll-margin-top: 90px;
+      }
+      .section__title {
+        font-size: clamp(22px, 2.4vw, 32px);
+        margin: 0 0 8px 0;
+      }
+      .section__lead {
+        color: #c9d2e8;
+        max-width: 72ch;
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, #0e1431, #0a1024);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+      .card__icon {
+        font-size: 22px;
+        line-height: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+      }
+      .card h3 {
+        margin: 10px 0 6px 0;
+        font-size: 1.05rem;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+      /* ====== Tabs (Stakeholder Views) ====== */
+      .tabs {
+        margin-top: 12px;
+      }
+      .tablist {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tab {
+        border: 1px solid var(--line);
+        background: #0f1532;
+        color: #cfd7ec;
+        padding: 10px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      .tab[aria-selected="true"] {
+        background: linear-gradient(135deg, var(--accent), #6d28d9);
+        color: #fff;
+      }
+      .tabpanel {
+        display: none;
+        margin-top: 14px;
+      }
+      .tabpanel.active {
+        display: block;
+      }
+      /* ====== Progress Bars / Gauges ====== */
+      .bar {
+        height: 10px;
+        background: #0b1539;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      .bar > span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent-3), var(--accent-2));
+      }
+      .gauge {
+        --p: 50;
+        --c: var(--accent-2);
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: radial-gradient(
+            farthest-side,
+            rgba(0, 0, 0, 0.08) 79%,
+            transparent 80% 100%
+          ),
+          conic-gradient(
+            var(--c) calc(var(--p) * 1%),
+            rgba(255, 255, 255, 0.08) 0
+          );
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+      }
+      .gauge > span {
+        font-weight: 800;
+      }
+      /* ====== Tables ====== */
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 12px;
+      }
+      thead th {
+        color: #a8b6d9;
+        font-size: 0.9rem;
+      }
+      tbody tr {
+        background: linear-gradient(180deg, #0e1431, #0b1024);
+        border: 1px solid var(--line);
+      }
+      tbody tr td {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      tbody tr:first-child td {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      tbody tr:last-child td {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+      /* ====== Alert toasts ====== */
+      .alerts {
+        display: grid;
+        gap: 10px;
+      }
+      .toast {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+      }
+      .toast--warn {
+        background: rgba(245, 158, 11, 0.12);
+      }
+      .toast--ok {
+        background: rgba(34, 197, 94, 0.12);
+      }
+      .toast--crit {
+        background: rgba(239, 68, 68, 0.14);
+      }
+      .toast__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .toast--warn .toast__dot {
+        background: var(--warn);
+      }
+      .toast--ok .toast__dot {
+        background: var(--success);
+      }
+      .toast--crit .toast__dot {
+        background: var(--danger);
+      }
+      /* ====== Footer ====== */
+      footer {
+        border-top: 1px solid var(--line);
+        background: #0a1126;
+      }
+      .footer__cols {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+      }
+      .footer__cols a {
+        color: #cfe8ff;
+      }
+      .copyright {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      /* ====== Utilities ====== */
+      .note {
+        font-size: 0.95rem;
+        color: #c1cbe2;
+      }
+      .kpis {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .kpi {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: linear-gradient(180deg, #0e1431, #0b1024);
+      }
+      .kpi .label {
+        color: #b7c4e2;
+        font-size: 0.85rem;
+      }
+      .kpi .val {
+        font-weight: 800;
+        font-size: 1.2rem;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid var(--line);
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #0e1533;
+        color: #cfd7ec;
+      }
+      .cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .divider {
+        height: 1px;
+        background: var(--line);
+        margin: 18px 0;
+      }
+      .shadow {
+        box-shadow: var(--shadow);
+      }
+      .center {
+        text-align: center;
+      }
+      .accent {
+        color: #cfe8ff;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      @media (max-width: 1000px) {
+        .hero__wrap {
+          grid-template-columns: 1fr;
+        }
+        .grid--4 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .grid--3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .row {
+          grid-template-columns: 1fr;
+        }
+        .kpis {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .footer__cols {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .grid--3,
+        .grid--4 {
+          grid-template-columns: 1fr;
+        }
+        .kpis {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto;
+        }
+        .hero__viz {
+          transition: none;
+        }
+      }
+      /* Print */
+      @media print {
+        header,
+        .hero__viz,
+        .btn,
+        .cta {
+          display: none !important;
+        }
+        body {
+          background: #000;
+          color: #fff;
+        }
+        .card,
+        .metric {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header role="banner" aria-label="Primary">
+      <div class="container">
+        <nav aria-label="Global">
+          <div class="brand">
+            <span class="brand__logo" aria-hidden="true"></span>
+            <span class="brand__title">NutriPulse • Uganda</span>
+          </div>
+          <div class="nav__links" role="navigation" aria-label="Main">
+            <a href="#why">Why</a>
+            <a href="#features">Features</a>
+            <a href="#stakeholders">Stakeholders</a>
+            <a href="#dashboard-preview">Live Dashboard</a>
+            <a href="#impact">Impact</a>
+            <a href="#pcc">Parameters</a>
+            <a href="https://nutripulse-uganda.streamlit.app" target="_blank" class="btn btn--primary">Access Dashboard</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ================= HERO ================= -->
+      <section class="hero container" id="hero" aria-labelledby="hero-title">
+        <div class="hero__wrap">
+          <div>
+            <span class="hero__tag">
+              <span aria-hidden="true">🇺🇬</span>
+              <strong>NutriPulse</strong> – Uganda Nutrition Enhanced Dashboard
+            </span>
+            <h1 class="hero__title" id="hero-title">
+              Transforming Uganda’s Nutrition Landscape
+            </h1>
+            <p class="hero__subtitle">
+              A national command center for nutrition intelligence and impact
+              optimization — integrating real‑time data, predictive models, and
+              supply chain simulation to guide high‑return investments.
+            </p>
+            <div class="hero__cta" role="group" aria-label="Primary actions">
+              <a href="https://nutripulse-uganda.streamlit.app" target="_blank" class="btn btn--primary">🚀 Launch Live Platform</a>
+              <a href="#dashboard-preview" class="btn btn--accent">Calculate Your Impact</a>
+              <a
+                href="assets/NutriPulse-Policy-Brief.pdf"
+                class="btn btn--ghost"
+                >Download Brief</a
+              >
+            </div>
+
+            <div class="grid grid--3" style="margin-top: 18px">
+              <div class="metric">
+                <h4>Lives Impacted</h4>
+                <div class="metric__value">Up to 3.8K</div>
+                <small class="muted">Calculate with your budget →</small>
+              </div>
+              <div class="metric">
+                <h4>Estimated ROI</h4>
+                <div class="metric__value">
+                  2.5× - 4.2×
+                </div>
+                <small class="muted">Run your scenarios →</small>
+              </div>
+              <div class="metric">
+                <h4>DALYs Averted</h4>
+                <div class="metric__value">Up to 300K</div>
+                <small class="muted">Optimize your strategy →</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Impact Cards -->
+          <div class="hero__viz" aria-label="Dashboard preview">
+            <div class="container" style="padding: 18px">
+              <div class="grid grid--2" style="gap: 14px">
+                <div class="kpi">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px">
+                    <span style="font-size: 24px">❤️</span>
+                    <div class="label">Lives Saved</div>
+                  </div>
+                  <div class="val" style="color: #22c55e; font-size: 28px">3,867</div>
+                  <small class="muted">CI: 2,730 - 5,003</small>
+                </div>
+                <div class="kpi">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px">
+                    <span style="font-size: 24px">📏</span>
+                    <div class="label">Stunting Prevented</div>
+                  </div>
+                  <div class="val" style="color: #06b6d4; font-size: 28px">34,776</div>
+                  <small class="muted">CI: 24,552 - 44,999</small>
+                </div>
+                <div class="kpi">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px">
+                    <span style="font-size: 24px">⏱️</span>
+                    <div class="label">DALYs Averted</div>
+                  </div>
+                  <div class="val" style="color: #a855f7; font-size: 28px">289,890</div>
+                  <small class="muted">Disability-Adjusted Life Years</small>
+                </div>
+                <div class="kpi">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px">
+                    <span style="font-size: 24px">💎</span>
+                    <div class="label">Economic Benefit</div>
+                  </div>
+                  <div class="val" style="color: #f59e0b; font-size: 28px">UGX 3.6T</div>
+                  <small class="muted">NPV: UGX 17.2T</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="note" style="margin-top: 12px">
+          <span class="badge">Snapshot</span> Metrics shown are demonstration
+          snapshots; values update with live data & scenario inputs.
+        </p>
+      </section>
+
+      <!-- ================= DASHBOARD PREVIEW ================= -->
+      <section class="container" id="dashboard-preview" aria-labelledby="dashboard-title">
+        <h2 class="section__title" id="dashboard-title">🚀 Experience the Live Platform</h2>
+        <p class="section__lead">
+          Transform static data into dynamic insights with our interactive dashboard.
+          Real-time calculations, AI-powered optimization, and instant PDF reports.
+        </p>
+        
+        <div class="card" style="margin-bottom: 20px;">
+          <h3>📊 What You Can Do in the Live Dashboard</h3>
+          <div class="grid grid--3" style="gap: 25px; margin-top: 20px;">
+            <div>
+              <h4 style="color: #4f46e5;">💰 Budget & Coverage</h4>
+              <ul style="font-size: 0.95rem;">
+                <li>Adjust from <strong>UGX 500M to 10B</strong></li>
+                <li>Target <strong>47.8M population</strong></li>
+                <li>Optimize for <strong>130 districts</strong></li>
+                <li>Calculate <strong>cost per person</strong></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: #10b981;">🧬 Nutrients & Interventions</h4>
+              <ul style="font-size: 0.95rem;">
+                <li>Select from <strong>15+ nutrients</strong></li>
+                <li>Apply <strong>synergy calculations</strong></li>
+                <li>Mix <strong>4 intervention types</strong></li>
+                <li>Track <strong>effectiveness rates</strong></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: #06b6d4;">📈 Analytics & Reports</h4>
+              <ul style="font-size: 0.95rem;">
+                <li>Run <strong>20+ scenarios</strong></li>
+                <li>Get <strong>instant projections</strong></li>
+                <li>Generate <strong>PDF reports</strong></li>
+                <li>Monitor <strong>real-time KPIs</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid--4" style="gap: 15px;">
+          <div class="card">
+            <h4>💼 For Investors</h4>
+            <ul style="font-size: 0.9rem;">
+              <li>IRR: 15-25%</li>
+              <li>NPV projections</li>
+              <li>Risk assessment</li>
+              <li>Co-investor matching</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>🏛️ For Policy Makers</h4>
+            <ul style="font-size: 0.9rem;">
+              <li>Coverage optimization</li>
+              <li>Budget allocation</li>
+              <li>Implementation roadmaps</li>
+              <li>Policy briefs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>🏥 For Program Managers</h4>
+            <ul style="font-size: 0.9rem;">
+              <li>Supply chain tracking</li>
+              <li>Quality metrics</li>
+              <li>Beneficiary management</li>
+              <li>Performance KPIs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>📊 For Researchers</h4>
+            <ul style="font-size: 0.9rem;">
+              <li>Statistical analysis</li>
+              <li>ML predictions</li>
+              <li>Data exports</li>
+              <li>Publication tools</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="center" style="margin-top: 30px;">
+          <a href="https://nutripulse-uganda.streamlit.app" target="_blank" class="btn btn--primary" style="font-size: 1.2rem; padding: 15px 30px;">
+            🚀 Launch Dashboard Now →
+          </a>
+          <p class="muted" style="margin-top: 10px;">No login required • Free access • Real-time data</p>
+        </div>
+      </section>
+
+      <!-- ================= WHY ================= -->
+      <section class="container" id="why" aria-labelledby="why-title">
+        <h2 class="section__title" id="why-title">Why NutriPulse?</h2>
+        <p class="section__lead">
+          Uganda faces a double burden of malnutrition —
+          <strong>~29% stunting</strong> among children,
+          <strong>~28% anemia</strong> among women, and widespread micronutrient
+          gaps. Fragmented data and limited analytics slow effective action.
+          <strong>NutriPulse</strong> unifies real‑time nutrition data,
+          predictive modeling, economic planning, and supply chain optimization
+          into a single decision‑support hub.
+        </p>
+        <div class="row" style="margin-top: 14px">
+          <div class="card">
+            <h3>Problem: Fragmented Evidence & Inefficient Spend</h3>
+            <ul>
+              <li>Disparate datasets across programs and partners.</li>
+              <li>
+                Limited ability to simulate coverage, costs, and health outcomes
+                before investing.
+              </li>
+              <li>
+                Intervention design often ignores nutrient synergies and supply
+                constraints.
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Solution: A National Command Center</h3>
+            <ul>
+              <li>
+                <strong>Data Intelligence:</strong> ingest, validate, and
+                harmonize national nutrition data (12 validated sources, 9,812
+                records; ±2.5% margin).
+              </li>
+              <li>
+                <strong>Predictive Models:</strong> risk scoring, coverage
+                estimation, and nutrient gap predictions.
+              </li>
+              <li>
+                <strong>Economic Planning:</strong> ROI, NPV, BCR with scenario
+                analysis and budget optimization.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FEATURES ================= -->
+      <section class="container" id="features" aria-labelledby="features-title">
+        <h2 class="section__title" id="features-title">Core Features</h2>
+        <div class="grid grid--4" style="margin-top: 10px">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📈</div>
+            <h3>Health Impact Simulation</h3>
+            <p class="muted">
+              Project lives saved, stunting prevented, and anemia reduction by
+              district with confidence intervals.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📊</div>
+            <h3>Multi‑Nutrient Deficiency Maps</h3>
+            <p class="muted">
+              Interactive Folium maps visualize gaps across nutrients & cohorts.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">⚙️</div>
+            <h3>Supply Chain Optimization</h3>
+            <p class="muted">
+              Linear programming for cost, speed, or coverage — with route,
+              lead‑time, and risk views.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">💰</div>
+            <h3>ROI & Economic Forecasts</h3>
+            <p class="muted">
+              5‑year NPV, IRR, BCR and payback; sensitivity and discounting
+              (default 5%).
+            </p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🧬</div>
+            <h3>Synergy‑Aware Design</h3>
+            <p class="muted">
+              Leverages known synergies (e.g., Iron+Folate 1.15×; Calcium+Vit A
+              1.25×) and avoids antagonism (Calcium+Zinc 0.85×).
+            </p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📄</div>
+            <h3>PDF Report Generator</h3>
+            <p class="muted">
+              One‑click Executive Summaries, KPIs, impact metrics, and
+              recommendations via ReportLab.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🧠</div>
+            <h3>ML Risk Prediction</h3>
+            <p class="muted">
+              scikit‑learn models for nutrient gaps, coverage estimates, and
+              risk scoring per district.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🗂️</div>
+            <h3>Modular Architecture</h3>
+            <p class="muted">
+              Advanced caching & state management with dynamic data modules and
+              fallbacks.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= STAKEHOLDER VIEWS (TABS) ================= -->
+      <section
+        class="container"
+        id="stakeholders"
+        aria-labelledby="stakeholders-title"
+      >
+        <h2 class="section__title" id="stakeholders-title">
+          Stakeholder Views
+        </h2>
+        <p class="section__lead">
+          Tailored lenses for investors, policy makers, program managers, and
+          researchers — the same data, decision‑ready views.
+        </p>
+
+        <div class="tabs" role="tablist" aria-label="Stakeholder Views">
+          <button
+            class="tab"
+            role="tab"
+            aria-selected="true"
+            aria-controls="tab-investors"
+            id="tabbtn-investors"
+          >
+            Investors
+          </button>
+          <button
+            class="tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-policy"
+            id="tabbtn-policy"
+          >
+            Policy Makers
+          </button>
+          <button
+            class="tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-managers"
+            id="tabbtn-managers"
+          >
+            Program Managers
+          </button>
+          <button
+            class="tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-researchers"
+            id="tabbtn-researchers"
+          >
+            Researchers
+          </button>
+        </div>
+
+        <div
+          id="tab-investors"
+          class="tabpanel active"
+          role="tabpanel"
+          aria-labelledby="tabbtn-investors"
+        >
+          <div class="row">
+            <div class="card" style="padding: 24px;">
+              <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #e6eaf3;">📊 ROI Dashboard</h3>
+              
+              <div style="background: rgba(79, 70, 229, 0.1); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                  <div>
+                    <span style="color: #a6b0c2; font-size: 0.85rem;">Total Investment</span>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #4f46e5;">UGX 167B</div>
+                    <span style="color: #10b981; font-size: 0.9rem;">↑23% YoY</span>
+                  </div>
+                  <div>
+                    <span style="color: #a6b0c2; font-size: 0.85rem;">Expected ROI</span>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #4f46e5;">3.8×</div>
+                    <span style="color: #a6b0c2; font-size: 0.9rem;">over 5 years</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px;">
+                <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
+                  <span style="color: #a6b0c2; font-size: 0.85rem;">NPV</span>
+                  <div style="font-weight: 600; color: #e6eaf3;">UGX 66.5B</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
+                  <span style="color: #a6b0c2; font-size: 0.85rem;">IRR</span>
+                  <div style="font-weight: 600; color: #e6eaf3;">~15%</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
+                  <span style="color: #a6b0c2; font-size: 0.85rem;">Payback</span>
+                  <div style="font-weight: 600; color: #e6eaf3;">~4 years</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
+                  <span style="color: #a6b0c2; font-size: 0.85rem;">BCR</span>
+                  <div style="font-weight: 600; color: #e6eaf3;">~1.31</div>
+                </div>
+              </div>
+              
+              <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 12px; border-radius: 4px; margin-bottom: 16px;">
+                <div style="font-size: 0.9rem; color: #e6eaf3; margin-bottom: 4px;">
+                  <strong>Impact:</strong> 2.3M lives • 45-130 districts
+                </div>
+                <div style="font-size: 0.85rem; color: #a6b0c2;">
+                  Thesis: Each UGX 1 invested → UGX 3.8 economic value
+                </div>
+              </div>
+              
+              <div style="text-align: center; margin-top: 20px;">
+                <a href="https://nutripulse-uganda.streamlit.app?role=investor" target="_blank" class="btn btn--primary">
+                  💼 Access Investor Dashboard →
+                </a>
+                <p class="muted" style="margin-top: 10px; font-size: 0.85rem;">Real-time IRR, NPV, scenario analysis & co-investor matching</p>
+              </div>
+            </div>
+            
+            <div class="card" style="padding: 24px;">
+              <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #e6eaf3;">🤝 Co-Funding & ESG</h3>
+              
+              <div style="display: grid; gap: 16px;">
+                <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 16px;">
+                  <div style="color: #a6b0c2; font-size: 0.85rem; margin-bottom: 8px;">Government Match</div>
+                  <div style="font-size: 1.8rem; font-weight: 700; color: #10b981;">~40%</div>
+                  <div style="color: #a6b0c2; font-size: 0.9rem;">secured (illustrative)</div>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 16px;">
+                  <div style="color: #a6b0c2; font-size: 0.85rem; margin-bottom: 8px;">ESG Alignment</div>
+                  <div style="display: flex; gap: 8px; margin: 8px 0;">
+                    <span style="background: #4f46e5; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem;">SDG 2</span>
+                    <span style="background: #4f46e5; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem;">SDG 3</span>
+                  </div>
+                  <div style="font-size: 1.2rem; font-weight: 600; color: #e6eaf3;">ESG Score: 85-95%</div>
+                </div>
+                
+                <div style="background: rgba(6, 182, 212, 0.1); border-radius: 8px; padding: 12px;">
+                  <div style="color: #06b6d4; font-size: 0.9rem; font-weight: 600; margin-bottom: 4px;">Scenario Analysis</div>
+                  <div style="color: #cdd6e9; font-size: 0.85rem;">
+                    Compare public-donor blends and crowd-in effects
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="tab-policy"
+          class="tabpanel"
+          role="tabpanel"
+          aria-labelledby="tabbtn-policy"
+        >
+          <div class="row">
+            <div class="card" style="padding: 24px;">
+              <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #e6eaf3;">💰 Budget Optimization</h3>
+              
+              <div style="background: rgba(79, 70, 229, 0.1); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                  <div>
+                    <span style="color: #a6b0c2; font-size: 0.85rem;">Total Budget</span>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #4f46e5;">UGX 178.0B</div>
+                    <span style="color: #a6b0c2; font-size: 0.9rem;">Monthly: UGX 14.8B</span>
+                  </div>
+                  <div>
+                    <span style="color: #a6b0c2; font-size: 0.85rem;">Target Coverage</span>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #10b981;">80%</div>
+                    <span style="color: #a6b0c2; font-size: 0.9rem;">of 46.2M people</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="color: #e6eaf3; font-size: 0.9rem;">Coverage Progress</span>
+                  <span style="color: #a6b0c2; font-size: 0.9rem;">53.6% → 80%</span>
+                </div>
+                <div class="bar" aria-label="Coverage progress" style="height: 12px;">
+                  <span style="width: 53.6%; background: linear-gradient(90deg, #10b981, #06b6d4);"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                  <span style="color: #10b981; font-size: 0.85rem;">Current: 53.6%</span>
+                  <span style="color: #f59e0b; font-size: 0.85rem;">Gap: 26.4%</span>
+                </div>
+              </div>
+              
+              <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px; margin-bottom: 16px;">
+                <div style="color: #e6eaf3; font-size: 1.1rem; font-weight: 600; margin-bottom: 4px;">
+                  36,968,606
+                </div>
+                <div style="color: #a6b0c2; font-size: 0.85rem;">
+                  People to reach with current budget
+                </div>
+              </div>
+              
+              <div style="text-align: center; margin-top: 20px;">
+                <a href="https://nutripulse-uganda.streamlit.app?role=policy_maker" target="_blank" class="btn btn--primary">
+                  🏛️ Design Your Policy Strategy →
+                </a>
+                <p class="muted" style="margin-top: 10px; font-size: 0.85rem;">Budget optimization, coverage maps & implementation roadmaps</p>
+              </div>
+            </div>
+            
+            <div class="card" style="padding: 24px;">
+              <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #e6eaf3;">🎯 Policy Quick Wins</h3>
+              
+              <div style="display: grid; gap: 12px;">
+                <div style="background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 4px;">
+                  <div style="color: #ef4444; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">
+                    0-6 Months (Immediate)
+                  </div>
+                  <div style="color: #e6eaf3; font-size: 0.85rem;">
+                    • Mandatory fortification legislation<br>
+                    • School feeding expansion<br>
+                    • Emergency supplementation (30 districts)
+                  </div>
+                </div>
+                
+                <div style="background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 4px;">
+                  <div style="color: #f59e0b; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">
+                    6-18 Months (Medium-term)
+                  </div>
+                  <div style="color: #e6eaf3; font-size: 0.85rem;">
+                    • HMIS integration<br>
+                    • CHW training programs<br>
+                    • Supply chain optimization
+                  </div>
+                </div>
+                
+                <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 12px; border-radius: 4px;">
+                  <div style="color: #10b981; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">
+                    18+ Months (Long-term)
+                  </div>
+                  <div style="color: #e6eaf3; font-size: 0.85rem;">
+                    • Biofortification scale-up<br>
+                    • Nutrition-sensitive agriculture<br>
+                    • Social behavior change programs
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="tab-managers"
+          class="tabpanel"
+          role="tabpanel"
+          aria-labelledby="tabbtn-managers"
+        >
+          <div class="row">
+            <div class="card">
+              <h3>Operations & Supply Chain</h3>
+              <ul>
+                <li>
+                  Total facilities: <strong>156</strong>; active distribution
+                  points: <strong>85</strong>.
+                </li>
+                <li>
+                  Avg lead time: <strong>4.9 days</strong>; stock turnover:
+                  <strong>2.7×/mo</strong>; fill rate: <strong>92.6%</strong>.
+                </li>
+                <li>
+                  Primary mode: road; optimize for <em>cost</em> /
+                  <em>speed</em> / <em>coverage</em>.
+                </li>
+              </ul>
+              <div
+                class="alerts"
+                role="region"
+                aria-live="polite"
+                aria-label="Real-time alerts (demo)"
+              >
+                <div class="toast toast--crit">
+                  <span class="toast__dot"></span>
+                  <div>
+                    <strong>Stock Alert:</strong> Vitamin B12 running low in 3
+                    districts.
+                  </div>
+                </div>
+                <div class="toast toast--warn">
+                  <span class="toast__dot"></span>
+                  <div>
+                    <strong>Coverage Gap:</strong> 15% below target in Eastern
+                    region.
+                  </div>
+                </div>
+                <div class="toast toast--ok">
+                  <span class="toast__dot"></span>
+                  <div>
+                    <strong>Milestone:</strong> 50,000 children reached this
+                    month.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Program Design & Monitoring</h3>
+              <ul>
+                <li>
+                  Intervention mix (example): Fortification 35%, Supplementation
+                  30%, Education 20%, Biofortification 15%.
+                </li>
+                <li>
+                  Average cost: <strong>UGX 36K/person/year</strong> vs model
+                  cost basis <strong>UGX 40K</strong> (suppl. 18K, fort. 8K,
+                  edu. 5K, monitoring 3K, delivery 6K).
+                </li>
+                <li>
+                  KPIs: Coverage 55%, Compliance 72%, Quality 78/100, Efficiency
+                  0.92×.
+                </li>
+              </ul>
+              <div style="text-align: center; margin-top: 20px;">
+                <a href="https://nutripulse-uganda.streamlit.app?role=program_manager" target="_blank" class="btn btn--primary">
+                  🎯 Optimize Operations →
+                </a>
+                <p class="muted" style="margin-top: 10px;">Supply chain analytics, monitoring dashboards & quality metrics</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="tab-researchers"
+          class="tabpanel"
+          role="tabpanel"
+          aria-labelledby="tabbtn-researchers"
+        >
+          <div class="row">
+            <div class="card">
+              <h3>Open Analytics</h3>
+              <ul>
+                <li>
+                  ML models: Nutrient Gap Predictor, Coverage Estimator, Risk
+                  Scoring.
+                </li>
+                <li>
+                  Clustering: 5 clusters (tunable) on district nutritional
+                  patterns.
+                </li>
+                <li>
+                  Heatmaps: nutrient synergy matrix; treemaps: economic impact;
+                  geographic: district coverage (Folium).
+                </li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Data & Evidence</h3>
+              <ul>
+                <li>
+                  12 validated sources; 9,812 records; ±2.5% margin; confidence
+                  default 95%.
+                </li>
+                <li>
+                  Reference docs: DHS 2022, UNHS 2019/20, WFP Food Security
+                  2023, Nutrition Action Plan 2019–2025.
+                </li>
+                <li>
+                  Export: PDF / Excel / PPT / Word; API endpoints for partners
+                  (on request).
+                </li>
+              </ul>
+              <div style="text-align: center; margin-top: 20px;">
+                <a href="https://nutripulse-uganda.streamlit.app?role=researcher" target="_blank" class="btn btn--primary">
+                  📊 Access Analytics Platform →
+                </a>
+                <p class="muted" style="margin-top: 10px;">ML models, statistical analysis & publication-ready visualizations</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PLATFORM COMPARISON ================= -->
+      <section class="container" id="comparison" aria-labelledby="comparison-title">
+        <h2 class="section__title" id="comparison-title">Platform Capabilities Comparison</h2>
+        <p class="section__lead">
+          See how the live dashboard transforms static information into actionable insights
+        </p>
+        
+        <table aria-label="Feature comparison between static page and live dashboard">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>This Page</th>
+              <th>Live Dashboard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Impact Metrics</strong></td>
+              <td>✓ Sample values</td>
+              <td>✓ Real-time calculations based on your inputs</td>
+            </tr>
+            <tr>
+              <td><strong>Budget Optimization</strong></td>
+              <td>✗ Static examples</td>
+              <td>✓ AI-powered scenarios (UGX 500M-10B range)</td>
+            </tr>
+            <tr>
+              <td><strong>Nutrient Selection</strong></td>
+              <td>✗ Information only</td>
+              <td>✓ 15+ nutrients with synergy calculations</td>
+            </tr>
+            <tr>
+              <td><strong>District Analysis</strong></td>
+              <td>✗ Summary data</td>
+              <td>✓ 130 districts with granular metrics</td>
+            </tr>
+            <tr>
+              <td><strong>Custom Reports</strong></td>
+              <td>✗ Pre-made brief</td>
+              <td>✓ Instant PDF generation with your data</td>
+            </tr>
+            <tr>
+              <td><strong>Predictive Analytics</strong></td>
+              <td>✗ Static projections</td>
+              <td>✓ ML models with confidence intervals</td>
+            </tr>
+            <tr>
+              <td><strong>Supply Chain</strong></td>
+              <td>✗ Overview only</td>
+              <td>✓ Real-time optimization & tracking</td>
+            </tr>
+            <tr>
+              <td><strong>ROI Calculator</strong></td>
+              <td>✗ Fixed multiplier</td>
+              <td>✓ Dynamic calculation (2.5×-4.2× range)</td>
+            </tr>
+            <tr>
+              <td><strong>Data Sources</strong></td>
+              <td>Representative values</td>
+              <td>✓ 9,812 live records from 12 sources</td>
+            </tr>
+            <tr>
+              <td><strong>Personalization</strong></td>
+              <td>✗ One-size-fits-all</td>
+              <td>✓ Role-based interfaces & insights</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="center" style="margin-top: 30px;">
+          <a href="https://nutripulse-uganda.streamlit.app" target="_blank" class="btn btn--accent" style="font-size: 1.1rem;">
+            Unlock Full Platform Capabilities →
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= TECH STACK ================= -->
+      <section class="container" id="stack" aria-labelledby="stack-title">
+        <h2 class="section__title" id="stack-title">🛠️ Technology Stack</h2>
+        <p class="section__lead">
+          Powering real-time analytics with cutting-edge Python libraries and frameworks
+        </p>
+        
+        <div class="grid grid--3" style="margin-top: 24px; gap: 20px;">
+          <div class="card" style="padding: 20px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(168, 85, 247, 0.05));">
+            <h4 style="color: #a855f7; margin-bottom: 12px;">🎨 Frontend & Visualization</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="pill" style="background: rgba(79, 70, 229, 0.2); color: #e6eaf3; border-color: #4f46e5;">
+                <strong>Streamlit</strong>
+              </span>
+              <span class="pill" style="background: rgba(79, 70, 229, 0.2); color: #e6eaf3; border-color: #4f46e5;">
+                <strong>Plotly</strong>
+              </span>
+              <span class="pill" style="background: rgba(79, 70, 229, 0.2); color: #e6eaf3; border-color: #4f46e5;">
+                <strong>Folium</strong>
+              </span>
+            </div>
+            <p style="font-size: 0.85rem; color: #a6b0c2; margin-top: 10px;">
+              Interactive dashboards, real-time charts, and geospatial maps
+            </p>
+          </div>
+          
+          <div class="card" style="padding: 20px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.05));">
+            <h4 style="color: #10b981; margin-bottom: 12px;">🧮 Analytics & ML</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="pill" style="background: rgba(16, 185, 129, 0.2); color: #e6eaf3; border-color: #10b981;">
+                <strong>scikit-learn</strong>
+              </span>
+              <span class="pill" style="background: rgba(16, 185, 129, 0.2); color: #e6eaf3; border-color: #10b981;">
+                <strong>SciPy</strong>
+              </span>
+              <span class="pill" style="background: rgba(16, 185, 129, 0.2); color: #e6eaf3; border-color: #10b981;">
+                <strong>Pandas</strong>
+              </span>
+            </div>
+            <p style="font-size: 0.85rem; color: #a6b0c2; margin-top: 10px;">
+              Predictive models, optimization algorithms, and data processing
+            </p>
+          </div>
+          
+          <div class="card" style="padding: 20px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(79, 70, 229, 0.05));">
+            <h4 style="color: #06b6d4; margin-bottom: 12px;">⚙️ Infrastructure</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="pill" style="background: rgba(6, 182, 212, 0.2); color: #e6eaf3; border-color: #06b6d4;">
+                <strong>NetworkX</strong>
+              </span>
+              <span class="pill" style="background: rgba(6, 182, 212, 0.2); color: #e6eaf3; border-color: #06b6d4;">
+                <strong>ReportLab</strong>
+              </span>
+              <span class="pill" style="background: rgba(6, 182, 212, 0.2); color: #e6eaf3; border-color: #06b6d4;">
+                <strong>Caching</strong>
+              </span>
+            </div>
+            <p style="font-size: 0.85rem; color: #a6b0c2; margin-top: 10px;">
+              Supply chain networks, PDF generation, and performance optimization
+            </p>
+          </div>
+        </div>
+        
+        <div class="card" style="margin-top: 20px; padding: 16px; background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b;">
+          <p style="color: #e6eaf3; font-size: 0.9rem; margin: 0;">
+            <strong>🔄 Smart Data Handling:</strong> Uses live/dynamic data when available, with robust fallback logic to ensure continuous analytics even when data sources are temporarily unavailable.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= REAL IMPACT EXAMPLES ================= -->
+      <section class="container" id="impact" aria-labelledby="impact-title">
+        <h2 class="section__title" id="impact-title">📈 Real Impact Projections</h2>
+        <p class="section__lead">
+          Evidence-based outcomes calculated from actual Uganda data and validated intervention models
+        </p>
+        
+        <div class="grid grid--3" style="margin-top: 24px; gap: 20px;">
+          <article class="card" style="padding: 24px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(255, 255, 255, 0.02)); border-top: 4px solid #ef4444;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <div style="width: 48px; height: 48px; background: rgba(239, 68, 68, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                📏
+              </div>
+              <h3 style="color: #e6eaf3; font-size: 1.1rem; margin: 0;">Stunting Reduction</h3>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+              <div style="font-size: 2rem; font-weight: 700; color: #ef4444; margin-bottom: 4px;">
+                34,776
+              </div>
+              <div style="color: #a6b0c2; font-size: 0.85rem;">
+                children prevented from stunting
+              </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 10px;">
+              <div style="color: #cdd6e9; font-size: 0.85rem;">
+                <strong>Confidence Interval:</strong><br>
+                24,552 – 44,999 children<br>
+                <span style="color: #a6b0c2;">(95% CI)</span>
+              </div>
+            </div>
+          </article>
+          
+          <article class="card" style="padding: 24px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(255, 255, 255, 0.02)); border-top: 4px solid #10b981;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <div style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                ❤️
+              </div>
+              <h3 style="color: #e6eaf3; font-size: 1.1rem; margin: 0;">Lives Saved</h3>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+              <div style="font-size: 2rem; font-weight: 700; color: #10b981; margin-bottom: 4px;">
+                3,867
+              </div>
+              <div style="color: #a6b0c2; font-size: 0.85rem;">
+                lives saved over 5 years
+              </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 10px;">
+              <div style="color: #cdd6e9; font-size: 0.85rem;">
+                <strong>Model:</strong> 23% mortality reduction<br>
+                <strong>Range:</strong> 2,730 – 5,003 lives<br>
+                <span style="color: #a6b0c2;">(95% CI)</span>
+              </div>
+            </div>
+          </article>
+          
+          <article class="card" style="padding: 24px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(255, 255, 255, 0.02)); border-top: 4px solid #4f46e5;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <div style="width: 48px; height: 48px; background: rgba(79, 70, 229, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                💎
+              </div>
+              <h3 style="color: #e6eaf3; font-size: 1.1rem; margin: 0;">Economic Return</h3>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+              <div style="font-size: 2rem; font-weight: 700; color: #4f46e5; margin-bottom: 4px;">
+                3.8× ROI
+              </div>
+              <div style="color: #a6b0c2; font-size: 0.85rem;">
+                UGX 1 → UGX 3.8 return
+              </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 10px;">
+              <div style="color: #cdd6e9; font-size: 0.85rem;">
+                <strong>5-Year NPV:</strong> UGX 66.5B<br>
+                <strong>BCR:</strong> 1.31<br>
+                <span style="color: #a6b0c2;">(5% discount rate)</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <div class="center" style="margin-top: 24px;">
+          <a href="https://nutripulse-uganda.streamlit.app" target="_blank" class="btn btn--accent">
+            Calculate Your Impact →
+          </a>
+          <p class="note" style="margin-top: 12px;">
+            These projections are based on evidence from WHO, UNICEF, and Lancet nutrition studies adapted to Uganda's context
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= LIVE DATA SOURCES ================= -->
+      <section class="container" id="data-sources" aria-labelledby="data-title">
+        <h2 class="section__title" id="data-title">Connected to Real Uganda Data</h2>
+        <p class="section__lead">
+          Our dashboard pulls from 12 validated sources with 9,812 records covering all 130 districts
+        </p>
+        
+        <div class="grid grid--4">
+          <div class="card">
+            <div class="card__icon">🏥</div>
+            <h3>Health Facilities</h3>
+            <p class="muted">156 facilities tracked</p>
+            <div class="badge" style="background: #d4edda; color: #155724;">● Live</div>
+          </div>
+          <div class="card">
+            <div class="card__icon">📊</div>
+            <h3>Nutrition Surveys</h3>
+            <p class="muted">9,812 records analyzed</p>
+            <div class="badge" style="background: #d4edda; color: #155724;">● Updated Daily</div>
+          </div>
+          <div class="card">
+            <div class="card__icon">🗺️</div>
+            <h3>District Coverage</h3>
+            <p class="muted">130 of 146 districts</p>
+            <div class="badge" style="background: #d4edda; color: #155724;">● Real-time</div>
+          </div>
+          <div class="card">
+            <div class="card__icon">👥</div>
+            <h3>Population Data</h3>
+            <p class="muted">47.8M people tracked</p>
+            <div class="badge" style="background: #d4edda; color: #155724;">● 2025 Census</div>
+          </div>
+        </div>
+        
+        <div class="center" style="margin-top: 20px;">
+          <p class="note">Data sources: Uganda Bureau of Statistics • WHO • UNICEF • FAO • Ministry of Health</p>
+        </div>
+      </section>
+
+      <!-- ================= PARAMETER CONTROL CENTER (SHOWCASE) ================= -->
+      <section class="container" id="pcc" aria-labelledby="pcc-title">
+        <h2 class="section__title" id="pcc-title">⚙️ Interactive Parameter Control in Dashboard</h2>
+        <p class="section__lead">
+          The live dashboard allows you to adjust all parameters in real-time and see instant impact calculations
+        </p>
+        
+        <div class="grid grid--2" style="gap: 24px; margin-top: 24px;">
+          <!-- Financial Parameters -->
+          <div class="card" style="padding: 24px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(255, 255, 255, 0.02));">
+            <h3 style="color: #e6eaf3; font-size: 1.2rem; margin-bottom: 20px;">
+              <span style="color: #f59e0b;">💰</span> Financial Parameters
+            </h3>
+            
+            <div style="display: grid; gap: 16px;">
+              <div style="background: rgba(79, 70, 229, 0.1); border-radius: 10px; padding: 16px;">
+                <div style="color: #a6b0c2; font-size: 0.85rem; margin-bottom: 8px;">Total Program Budget</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: #4f46e5;">UGX 178.0B</div>
+                <div style="color: #cdd6e9; font-size: 0.9rem; margin-top: 4px;">
+                  Monthly allocation: <strong>UGX 14.8B</strong>
+                </div>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px;">
+                  <div style="color: #a6b0c2; font-size: 0.85rem;">Discount Rate</div>
+                  <div style="font-size: 1.3rem; font-weight: 600; color: #e6eaf3;">5%</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px;">
+                  <div style="color: #a6b0c2; font-size: 0.85rem;">Time Horizon</div>
+                  <div style="font-size: 1.3rem; font-weight: 600; color: #e6eaf3;">5 years</div>
+                </div>
+              </div>
+              
+              <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
+                <h4 style="color: #cdd6e9; font-size: 0.95rem; margin-bottom: 12px;">📅 Program Timeline</h4>
+                <div style="background: rgba(16, 185, 129, 0.1); border-radius: 8px; padding: 12px;">
+                  <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                    <span style="color: #e6eaf3;"><strong>Start:</strong> Aug 2025</span>
+                    <span style="color: #e6eaf3;"><strong>Duration:</strong> 12 months</span>
+                    <span style="color: #10b981;"><strong>Reviews:</strong> Quarterly</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Population & Coverage -->
+          <div class="card" style="padding: 24px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(255, 255, 255, 0.02));">
+            <h3 style="color: #e6eaf3; font-size: 1.2rem; margin-bottom: 20px;">
+              <span style="color: #06b6d4;">👥</span> Population & Coverage
+            </h3>
+            
+            <div style="display: grid; gap: 16px;">
+              <div style="background: rgba(6, 182, 212, 0.1); border-radius: 10px; padding: 16px;">
+                <div style="color: #a6b0c2; font-size: 0.85rem; margin-bottom: 8px;">Target Population</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: #06b6d4;">46.2M people</div>
+                <div style="color: #cdd6e9; font-size: 0.9rem; margin-top: 4px;">
+                  Strategy: <strong>Universal Coverage</strong> (All 130 Districts)
+                </div>
+              </div>
+              
+              <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                  <span style="color: #e6eaf3;">Coverage Target</span>
+                  <span style="font-weight: 700; color: #10b981;">80%</span>
+                </div>
+                <div class="bar" style="height: 12px; margin-bottom: 8px;">
+                  <span style="width: 53.6%; background: linear-gradient(90deg, #10b981, #06b6d4);"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #10b981; font-size: 0.85rem;">Current: 53.6%</span>
+                  <span style="color: #f59e0b; font-size: 0.85rem;">Gap: 26.4%</span>
+                </div>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px;">
+                  <div style="color: #a6b0c2; font-size: 0.85rem;">People to Reach</div>
+                  <div style="font-size: 1.1rem; font-weight: 600; color: #e6eaf3;">36.97M</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px;">
+                  <div style="color: #a6b0c2; font-size: 0.85rem;">Cost per Person</div>
+                  <div style="font-size: 1.1rem; font-weight: 600; color: #e6eaf3;">UGX 5K</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid--2" style="gap: 24px; margin-top: 24px;">
+          <!-- Intervention Mix -->
+          <div class="card" style="padding: 24px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(255, 255, 255, 0.02));">
+            <h3 style="color: #e6eaf3; font-size: 1.2rem; margin-bottom: 20px;">
+              <span style="color: #a855f7;">🔧</span> Intervention Mix (Balanced)
+            </h3>
+            
+            <div style="display: grid; gap: 12px;">
+              <div style="background: rgba(79, 70, 229, 0.1); border-radius: 8px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="color: #e6eaf3; font-weight: 600;">🏭 Food Fortification</div>
+                    <div style="color: #a6b0c2; font-size: 0.85rem;">UGX 53K per person</div>
+                  </div>
+                  <div style="font-size: 1.5rem; font-weight: 700; color: #4f46e5;">35%</div>
+                </div>
+              </div>
+              
+              <div style="background: rgba(16, 185, 129, 0.1); border-radius: 8px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="color: #e6eaf3; font-weight: 600;">💊 Direct Supplementation</div>
+                    <div style="color: #a6b0c2; font-size: 0.85rem;">UGX 2K per person</div>
+                  </div>
+                  <div style="font-size: 1.5rem; font-weight: 700; color: #10b981;">30%</div>
+                </div>
+              </div>
+              
+              <div style="background: rgba(6, 182, 212, 0.1); border-radius: 8px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="color: #e6eaf3; font-weight: 600;">📚 Nutrition Education</div>
+                    <div style="color: #a6b0c2; font-size: 0.85rem;">UGX 28K per person</div>
+                  </div>
+                  <div style="font-size: 1.5rem; font-weight: 700; color: #06b6d4;">20%</div>
+                </div>
+              </div>
+              
+              <div style="background: rgba(245, 158, 11, 0.1); border-radius: 8px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="color: #e6eaf3; font-weight: 600;">🌾 Biofortified Crops</div>
+                    <div style="color: #a6b0c2; font-size: 0.85rem;">UGX 71K per person</div>
+                  </div>
+                  <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b;">15%</div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px; margin-top: 16px;">
+              <div style="color: #a6b0c2; font-size: 0.85rem;">Average Cost Basis</div>
+              <div style="color: #e6eaf3; font-size: 1.2rem; font-weight: 600;">UGX 40K/person/year</div>
+            </div>
+          </div>
+
+          <!-- Synergy Matrix -->
+          <div class="card" style="padding: 24px; background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(255, 255, 255, 0.02));">
+            <h3 style="color: #e6eaf3; font-size: 1.2rem; margin-bottom: 20px;">
+              <span style="color: #22c55e;">🧬</span> Nutrient Synergy Matrix
+            </h3>
+            
+            <div style="display: grid; gap: 12px;">
+              <div style="background: rgba(34, 197, 94, 0.15); border-radius: 8px; padding: 12px;">
+                <div style="color: #22c55e; font-weight: 600; margin-bottom: 8px;">💚 Strong Synergies</div>
+                <div style="display: grid; gap: 6px;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #e6eaf3; font-size: 0.9rem;">B12 + Folate</span>
+                    <span style="color: #22c55e; font-weight: 700;">1.4×</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #e6eaf3; font-size: 0.9rem;">Iron + Vit C</span>
+                    <span style="color: #22c55e; font-weight: 700;">1.3×</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #e6eaf3; font-size: 0.9rem;">Ca + Vit A</span>
+                    <span style="color: #22c55e; font-weight: 700;">1.25×</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="background: rgba(6, 182, 212, 0.1); border-radius: 8px; padding: 12px;">
+                <div style="color: #06b6d4; font-weight: 600; margin-bottom: 8px;">🔵 Moderate Synergies</div>
+                <div style="display: grid; gap: 6px;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #e6eaf3; font-size: 0.9rem;">Vit A + Zinc</span>
+                    <span style="color: #06b6d4; font-weight: 700;">1.2×</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #e6eaf3; font-size: 0.9rem;">Iron + Folate</span>
+                    <span style="color: #06b6d4; font-weight: 700;">1.15×</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="background: rgba(239, 68, 68, 0.1); border-radius: 8px; padding: 12px;">
+                <div style="color: #ef4444; font-weight: 600; margin-bottom: 8px;">⚠️ Antagonistic</div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #e6eaf3; font-size: 0.9rem;">Calcium + Zinc</span>
+                  <span style="color: #ef4444; font-weight: 700;">0.85×</span>
+                </div>
+              </div>
+              
+              <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: #a6b0c2; font-size: 0.85rem;">Average Synergy Factor</span>
+                  <span style="font-size: 1.3rem; font-weight: 700; color: #10b981;">~1.20×</span>
+                </div>
+                <div class="bar" style="height: 8px; margin-top: 8px;">
+                  <span style="width: 70%; background: linear-gradient(90deg, #22c55e, #10b981);"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Budget Scenarios -->
+          <div class="card" style="background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(147,51,234,0.05)); border: 1px solid rgba(59,130,246,0.2);">
+            <h3 style="font-size: 1.4rem; margin-bottom: 20px; color: #fff;">
+              🎯 Budget Optimization Scenarios
+            </h3>
+            
+            <div style="overflow-x: auto;">
+              <table aria-label="Budget scenarios" style="width: 100%; border-collapse: separate; border-spacing: 0;">
+                <thead>
+                  <tr style="background: rgba(59,130,246,0.1);">
+                    <th style="padding: 12px; text-align: left; color: #94a3b8; font-size: 0.85rem; font-weight: 600;">BUDGET</th>
+                    <th style="padding: 12px; text-align: center; color: #94a3b8; font-size: 0.85rem; font-weight: 600;">COVERAGE</th>
+                    <th style="padding: 12px; text-align: center; color: #94a3b8; font-size: 0.85rem; font-weight: 600;">PEOPLE REACHED</th>
+                    <th style="padding: 12px; text-align: center; color: #94a3b8; font-size: 0.85rem; font-weight: 600;">LIVES SAVED</th>
+                    <th style="padding: 12px; text-align: center; color: #94a3b8; font-size: 0.85rem; font-weight: 600;">ROI</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 14px; font-weight: 600; color: #e2e8f0;">
+                      <span style="color: #60a5fa; font-size: 1.1rem;">500M</span>
+                      <span style="color: #64748b; font-size: 0.75rem; margin-left: 4px;">UGX</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.2rem; font-weight: 700; color: #fbbf24;">1.1%</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #fff;">122.6K</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #10b981;">89</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="background: linear-gradient(90deg, #22c55e, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.2rem; font-weight: 700;">2,834%</span>
+                    </td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 14px; font-weight: 600; color: #e2e8f0;">
+                      <span style="color: #60a5fa; font-size: 1.1rem;">1B</span>
+                      <span style="color: #64748b; font-size: 0.75rem; margin-left: 4px;">UGX</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.2rem; font-weight: 700; color: #fbbf24;">2.2%</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #fff;">245.3K</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #10b981;">178</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="background: linear-gradient(90deg, #22c55e, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.2rem; font-weight: 700;">1,417%</span>
+                    </td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(59,130,246,0.05);">
+                    <td style="padding: 14px; font-weight: 600; color: #e2e8f0;">
+                      <span style="color: #60a5fa; font-size: 1.1rem;">2B</span>
+                      <span style="color: #64748b; font-size: 0.75rem; margin-left: 4px;">UGX</span>
+                      <span style="background: #3b82f6; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; margin-left: 8px;">OPTIMAL</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.2rem; font-weight: 700; color: #fbbf24;">4.5%</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #fff;">490.5K</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #10b981;">357</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="background: linear-gradient(90deg, #22c55e, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.2rem; font-weight: 700;">709%</span>
+                    </td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 14px; font-weight: 600; color: #e2e8f0;">
+                      <span style="color: #60a5fa; font-size: 1.1rem;">3B</span>
+                      <span style="color: #64748b; font-size: 0.75rem; margin-left: 4px;">UGX</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.2rem; font-weight: 700; color: #fbbf24;">6.7%</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #fff;">735.8K</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #10b981;">535</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="color: #fbbf24; font-size: 1.2rem; font-weight: 700;">472%</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 14px; font-weight: 600; color: #e2e8f0;">
+                      <span style="color: #60a5fa; font-size: 1.1rem;">5B</span>
+                      <span style="color: #64748b; font-size: 0.75rem; margin-left: 4px;">UGX</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.2rem; font-weight: 700; color: #fbbf24;">11.2%</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #fff;">1.23M</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="font-size: 1.1rem; font-weight: 600; color: #10b981;">892</span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                      <span style="color: #f87171; font-size: 1.2rem; font-weight: 700;">283%</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div style="background: rgba(16,185,129,0.1); border-radius: 8px; padding: 12px; margin-top: 20px;">
+              <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">
+                💡 <strong style="color: #10b981;">Key Insight:</strong> Optimal ROI at 2B UGX budget. Diminishing returns above 3B UGX suggest diversification opportunities.
+              </p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px;">
+              <a href="https://nutripulse-uganda.streamlit.app" target="_blank" class="btn btn--primary" style="background: linear-gradient(90deg, #3b82f6, #8b5cf6); padding: 12px 24px;">
+                🎮 Try Interactive Calculator →
+              </a>
+              <p class="muted" style="margin-top: 10px; font-size: 0.85rem;">Adjust budgets • Select nutrients • Optimize strategies • Generate reports</p>
+            </div>
+          </div>
+
+          <!-- Supply Chain -->
+          <div class="card" style="background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(34,197,94,0.05)); border: 1px solid rgba(16,185,129,0.2);">
+            <h3 style="font-size: 1.4rem; margin-bottom: 20px; color: #fff;">
+              🚚 Supply Chain Dashboard
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+              <!-- Iron -->
+              <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 14px; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="color: #e2e8f0; font-weight: 600;">Iron</span>
+                  <span style="background: #10b981; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">STABLE</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                  <span style="color: #64748b; font-size: 0.85rem;">Stock Level</span>
+                  <span style="color: #10b981; font-weight: 700; font-size: 1.1rem;">68%</span>
+                </div>
+                <div class="bar" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                  <span style="width: 68%; background: linear-gradient(90deg, #22c55e, #10b981); display: block; height: 100%; border-radius: 3px;"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                  <span style="color: #64748b; font-size: 0.75rem;">Days Supply</span>
+                  <span style="color: #94a3b8; font-size: 0.85rem; font-weight: 600;">22 days</span>
+                </div>
+              </div>
+              
+              <!-- Vitamin B12 -->
+              <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 14px; border: 1px solid rgba(248,113,113,0.3);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="color: #e2e8f0; font-weight: 600;">Vitamin B12</span>
+                  <span style="background: #f87171; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">LOW</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                  <span style="color: #64748b; font-size: 0.85rem;">Stock Level</span>
+                  <span style="color: #f87171; font-weight: 700; font-size: 1.1rem;">30%</span>
+                </div>
+                <div class="bar" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                  <span style="width: 30%; background: linear-gradient(90deg, #ef4444, #f87171); display: block; height: 100%; border-radius: 3px;"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                  <span style="color: #64748b; font-size: 0.75rem;">Days Supply</span>
+                  <span style="color: #f87171; font-size: 0.85rem; font-weight: 600;">9 days ⚠️</span>
+                </div>
+              </div>
+              
+              <!-- Vitamin A -->
+              <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 14px; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="color: #e2e8f0; font-weight: 600;">Vitamin A</span>
+                  <span style="background: #10b981; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">GOOD</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                  <span style="color: #64748b; font-size: 0.85rem;">Stock Level</span>
+                  <span style="color: #10b981; font-weight: 700; font-size: 1.1rem;">84%</span>
+                </div>
+                <div class="bar" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                  <span style="width: 84%; background: linear-gradient(90deg, #22c55e, #10b981); display: block; height: 100%; border-radius: 3px;"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                  <span style="color: #64748b; font-size: 0.75rem;">Days Supply</span>
+                  <span style="color: #94a3b8; font-size: 0.85rem; font-weight: 600;">28 days</span>
+                </div>
+              </div>
+              
+              <!-- Folate -->
+              <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 14px; border: 1px solid rgba(251,191,36,0.2);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="color: #e2e8f0; font-weight: 600;">Folate</span>
+                  <span style="background: #fbbf24; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">MODERATE</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                  <span style="color: #64748b; font-size: 0.85rem;">Stock Level</span>
+                  <span style="color: #fbbf24; font-weight: 700; font-size: 1.1rem;">52%</span>
+                </div>
+                <div class="bar" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                  <span style="width: 52%; background: linear-gradient(90deg, #f59e0b, #fbbf24); display: block; height: 100%; border-radius: 3px;"></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                  <span style="color: #64748b; font-size: 0.75rem;">Days Supply</span>
+                  <span style="color: #94a3b8; font-size: 0.85rem; font-weight: 600;">16 days</span>
+                </div>
+              </div>
+            </div>
+            
+            <div style="background: rgba(59,130,246,0.05); border-radius: 8px; padding: 14px; margin-top: 15px;">
+              <h4 style="color: #60a5fa; font-size: 0.9rem; margin-bottom: 10px;">📊 Risk Matrix Overview</h4>
+              <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
+                <div style="text-align: center;">
+                  <div style="color: #10b981; font-size: 1.5rem;">☀️</div>
+                  <div style="color: #64748b; font-size: 0.7rem; margin-top: 4px;">Weather</div>
+                  <div style="color: #10b981; font-size: 0.75rem; font-weight: 600;">Low</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="color: #fbbf24; font-size: 1.5rem;">🏛️</div>
+                  <div style="color: #64748b; font-size: 0.7rem; margin-top: 4px;">Political</div>
+                  <div style="color: #fbbf24; font-size: 0.75rem; font-weight: 600;">Med</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="color: #10b981; font-size: 1.5rem;">📦</div>
+                  <div style="color: #64748b; font-size: 0.7rem; margin-top: 4px;">Supplier</div>
+                  <div style="color: #10b981; font-size: 0.75rem; font-weight: 600;">Low</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="color: #f87171; font-size: 1.5rem;">🚛</div>
+                  <div style="color: #64748b; font-size: 0.7rem; margin-top: 4px;">Transport</div>
+                  <div style="color: #f87171; font-size: 0.75rem; font-weight: 600;">High</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="color: #10b981; font-size: 1.5rem;">✅</div>
+                  <div style="color: #64748b; font-size: 0.7rem; margin-top: 4px;">Quality</div>
+                  <div style="color: #10b981; font-size: 0.75rem; font-weight: 600;">Low</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TESTIMONIALS ================= -->
+      <section
+        class="container"
+        id="testimonials"
+        aria-labelledby="testimonials-title"
+      >
+        <h2 class="section__title" id="testimonials-title">
+          Testimonials & Use Cases
+        </h2>
+        <div class="grid grid--3" style="margin-top: 10px">
+          <blockquote class="card">
+            <p>
+              “NutriPulse helped us reallocate funds to save
+              <strong>45,000</strong> more children.”
+            </p>
+            <footer class="muted">— Ministry of Health Officer</footer>
+          </blockquote>
+          <blockquote class="card">
+            <p>
+              “We used the scenario analysis to attract a
+              <strong>$5M</strong> donor commitment.”
+            </p>
+            <footer class="muted">— NGO Director</footer>
+          </blockquote>
+          <blockquote class="card">
+            <p>
+              “The synergy‑aware design changed our intervention mix and
+              improved outcomes within a quarter.”
+            </p>
+            <footer class="muted">— District Program Manager</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ================= CTA ================= -->
+      <section class="container" id="cta" aria-labelledby="cta-title">
+        <div class="card shadow">
+          <h2 class="section__title" id="cta-title">
+            🚀 Ready to Transform Nutrition Outcomes?
+          </h2>
+          <p class="section__lead">
+            Access the live dashboard now or schedule a personalized walkthrough. 
+            Real-time calculations, instant reports, and evidence-based insights await.
+          </p>
+          <div class="cta" role="group" aria-label="Call to action">
+            <a
+              href="https://nutripulse-uganda.streamlit.app"
+              target="_blank"
+              class="btn btn--primary"
+              style="font-size: 1.2rem; padding: 15px 30px;"
+              >🚀 Launch Dashboard Now</a
+            >
+            <a href="assets/NutriPulse-Policy-Brief.pdf" class="btn btn--ghost"
+              >Download Policy Brief</a
+            >
+            <a
+              href="mailto:support@nutrition.ug?subject=NutriPulse%20Demo%20Request"
+              class="btn btn--accent"
+              >Schedule Walkthrough</a
+            >
+          </div>
+          <p class="muted" style="margin-top: 10px">
+            Free access • No login required • Real Uganda data • Instant PDF reports
+          </p>
+          
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 15px;">Choose Your Entry Point:</h3>
+            <div class="grid grid--4" style="gap: 10px;">
+              <button onclick="launchDashboard('investor')" class="btn btn--ghost" style="font-size: 0.9rem;">
+                💼 Investor Portal
+              </button>
+              <button onclick="launchDashboard('policy_maker')" class="btn btn--ghost" style="font-size: 0.9rem;">
+                🏛️ Policy Dashboard
+              </button>
+              <button onclick="launchDashboard('program_manager')" class="btn btn--ghost" style="font-size: 0.9rem;">
+                🏥 Operations Hub
+              </button>
+              <button onclick="launchDashboard('researcher')" class="btn btn--ghost" style="font-size: 0.9rem;">
+                📊 Analytics Suite
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer role="contentinfo">
+        <div class="container">
+          <div class="footer__cols">
+            <div>
+              <div class="brand" style="margin-bottom: 10px">
+                <span class="brand__logo" aria-hidden="true"></span>
+                <span class="brand__title">NutriPulse • Uganda</span>
+              </div>
+              <p class="muted">
+                An integrated nutrition intelligence platform for Uganda —
+                combining real‑time data, ML, economic analysis, and supply
+                chain simulation.
+              </p>
+              <div style="margin-top: 10px">
+                <span class="badge">Dark Theme</span>
+                <span class="badge">Accessible</span>
+                <span class="badge">Responsive</span>
+              </div>
+            </div>
+            <div>
+              <h4>Contact</h4>
+              <ul>
+                <li>
+                  Email:
+                  <a href="mailto:support@nutrition.ug">support@nutrition.ug</a>
+                </li>
+                <li>
+                  Data Updates: <a href="mailto:data@ubos.org">data@ubos.org</a>
+                </li>
+                <li>
+                  Training:
+                  <a href="mailto:training@health.go.ug"
+                    >training@health.go.ug</a
+                  >
+                </li>
+                <li>
+                  Research:
+                  <a href="mailto:research@mak.ac.ug">research@mak.ac.ug</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4>Partners</h4>
+              <ul>
+                <li>Ministry of Health • OPM Nutrition Secretariat</li>
+                <li>UNICEF Uganda • WFP Uganda • USAID Uganda</li>
+                <li>UBOS • Makerere University</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li>
+                  <a href="https://github.com/your-org/nutripulse"
+                    >GitHub (if public)</a
+                  >
+                </li>
+                <li><a href="#pcc">Parameter Center</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <p class="copyright">
+            © <span id="year"></span> NutriPulse – Uganda Nutrition Enhanced
+            Dashboard. All rights reserved. <br /><small class="muted"
+              >Disclaimer: Demo snapshots include representative values; live
+              platform uses validated national datasets and real‑time streams
+              where available.</small
+            >
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+      // Dynamic year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Tabs: accessibility support
+      const tabButtons = [...document.querySelectorAll(".tab")];
+      const panels = [...document.querySelectorAll(".tabpanel")];
+      function activateTab(btn) {
+        tabButtons.forEach((b) =>
+          b.setAttribute("aria-selected", b === btn ? "true" : "false")
+        );
+        panels.forEach((p) =>
+          p.classList.toggle(
+            "active",
+            p.id === btn.getAttribute("aria-controls")
+          )
+        );
+      }
+      tabButtons.forEach((btn) => {
+        btn.addEventListener("click", () => activateTab(btn));
+        btn.addEventListener("keydown", (e) => {
+          const i = tabButtons.indexOf(btn);
+          if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
+            e.preventDefault();
+            let n = i;
+            if (e.key === "ArrowLeft")
+              n = (i - 1 + tabButtons.length) % tabButtons.length;
+            if (e.key === "ArrowRight") n = (i + 1) % tabButtons.length;
+            if (e.key === "Home") n = 0;
+            if (e.key === "End") n = tabButtons.length - 1;
+            tabButtons[n].focus();
+            activateTab(tabButtons[n]);
+          }
+        });
+      });
+
+      // Smooth scrolling for internal links (respects prefers-reduced-motion)
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const id = a.getAttribute("href").slice(1);
+          const el = document.getElementById(id);
+          if (el) {
+            e.preventDefault();
+            if (!prefersReduced) {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            } else {
+              el.scrollIntoView();
+            }
+          }
+        });
+      });
+
+      // Role-based dashboard routing
+      function launchDashboard(role) {
+        const baseUrl = 'https://nutripulse-uganda.streamlit.app';
+        const url = role ? `${baseUrl}?role=${role}` : baseUrl;
+        window.open(url, '_blank');
+        
+        // Track the launch event (if analytics is set up)
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'dashboard_launch', {
+            'role': role || 'direct',
+            'source': 'landing_page'
+          });
+        }
+      }
+
+      // Add click tracking to all dashboard links
+      document.querySelectorAll('a[href*="streamlit.app"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Extract role from URL if present
+          const url = new URL(this.href);
+          const role = url.searchParams.get('role') || 'direct';
+          
+          // Track the click
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'dashboard_click', {
+              'role': role,
+              'location': this.closest('section')?.id || 'unknown'
+            });
+          }
+        });
+      });
+
+      // Add hover effect to primary CTAs
+      document.querySelectorAll('.btn--primary').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-2px)';
+          this.style.boxShadow = '0 8px 25px rgba(79, 70, 229, 0.3)';
+        });
+        btn.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = '';
+        });
+      });
+
+      // Smooth scroll enhancement for dashboard preview links
+      document.querySelectorAll('a[href="#dashboard-preview"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector('#dashboard-preview');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Highlight the section briefly
+            target.style.background = 'rgba(79, 70, 229, 0.05)';
+            setTimeout(() => {
+              target.style.background = '';
+            }, 1000);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

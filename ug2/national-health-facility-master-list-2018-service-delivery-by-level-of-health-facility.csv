@@ -1,0 +1,14 @@
+Service Delivery by Level of Health Facility,,,
+#,LEVEL,POPULATION,SERVICES PROVIDED
+1,Clinic,Not-Defined,Community based preventive and Promotive Health Services. Village Health community or similar status.
+2,Health Centre III,"5,000","Preventive, Promotive and Outpatient Curative Health Services, outreach care, and
+emergency."
+3,Health Centre II,"20,000","Preventive, Promotive, Outpatient Curative, Maternity, inpatient Health Services and Laboratory services."
+4,Health Centre IV,"100,000","Preventive, Promotive Outpatient Curative, Maternity, inpatient Health Services,
+Emergency surgery and Blood transfusion and Laboratory services."
+5,General Hospital,"500,000","In addition to services offered at HC IV, other general services will be provided. It will also provide in service training, consultation and research to community based"
+6,Referral Hospital,"1,000,000","In addition to services offered at the general hospital each hospital will offer a
+package of specialised services and training."
+7,Regional Referral Hospital (RRH),"2,000,000","In addition to services offered at the general hospital, specialist services will be offered, such as psychiatry, Ear, Nose and Throat (ENT), Ophthalmology, dentistry, intensive care, radiology, pathology, higher level surgical."
+8,National Referral Hospital (NRH),"10,000,000","These provide comprehensive specialist services. In addition, they are involved in
+teaching and research."

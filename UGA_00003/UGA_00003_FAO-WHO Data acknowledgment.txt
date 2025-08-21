@@ -1,0 +1,25 @@
+FAO-WHO Gift data acknowledgment
+UGA-00003
+
+The dataset you are going to download was shared through FAO/WHO GIFT by:
+
+HarvestPlus, International Food Policy Research Institute (IFPRI);
+
+Academy for Educational Development (AED).
+
+We thank them for their generous contribution
+
+By downloading this dataset you accept to:
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comply with all applicable laws, including, without limitation, privacy laws, intellectual property laws, anti-spam laws;
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not publicly represent or imply that FAO is participating in, or has sponsored, approved or endorsed the manner or purpose of your use of the database;
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;provide the following acknowledgment to the contributor whenever publishing or presenting publicly these data or its derivatives:
+
+HarvestPlus, International Food Policy Research Institute (IFPRI); Academy for Educational Development (AED), 2017, &quot;The HarvestPlus REU/A2Z-AED 2007-2008 Uganda 24-Hour Recall Survey&quot;, doi:10.7910/DVN/FOYZBL
+
+Or shortly:
+
+Uganda; HarvestPlus - IFPRI; 2007-2008
+

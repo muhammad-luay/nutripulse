@@ -1,0 +1,777 @@
+{
+    "meta": {
+        "id": "IREF214701",
+        "test": false,
+        "schema": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+        "prepared": "2025-08-20T20:24:30Z",
+        "contentLanguages": [
+            "en"
+        ],
+        "sender": {
+            "id": "UNICEF"
+        }
+    },
+    "data": {
+        "dataflows": [
+            {
+                "name": "Brazil Country Office",
+                "names": {
+                    "en": "Brazil Country Office"
+                },
+                "id": "BRAZIL_CO",
+                "version": "1.0",
+                "agencyID": "BRAZIL_CO",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=BRAZIL_CO:DSD_BRAZIL_CO(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=BRAZIL_CO:BRAZIL_CO(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "CME Uganda",
+                "names": {
+                    "en": "CME Uganda"
+                },
+                "id": "CME_SUBNAT_UGA",
+                "version": "1.0",
+                "agencyID": "UNICEF",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:DSD_CME_SUBNAT(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF:CME_SUBNAT_UGA(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "CME Uganda Draft",
+                "names": {
+                    "en": "CME Uganda Draft"
+                },
+                "id": "CME_SUBNAT_UGA_DRAFT",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:CME_SUBNAT_DRAFT(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CME_SUBNAT_UGA_DRAFT(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "CME Zambia Draft",
+                "names": {
+                    "en": "CME Zambia Draft"
+                },
+                "id": "CME_SUBNAT_ZMB_DRAFT",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:CME_SUBNAT_DRAFT(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CME_SUBNAT_ZMB_DRAFT(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "CME Zimbabwe Draft",
+                "names": {
+                    "en": "CME Zimbabwe Draft"
+                },
+                "id": "CME_SUBNAT_ZWE_DRAFT",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:CME_SUBNAT_DRAFT(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CME_SUBNAT_ZWE_DRAFT(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "CRAVE Consultation 2020",
+                "names": {
+                    "en": "CRAVE Consultation 2020"
+                },
+                "id": "CRAVE_2020_1",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:CRAVE_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CRAVE_2020_1(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Crave Consultation 2021",
+                "names": {
+                    "en": "Crave Consultation 2021"
+                },
+                "id": "CRAVE_2021",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:CRAVE_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CRAVE_2021(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Crave Consultation 2022",
+                "names": {
+                    "en": "Crave Consultation 2022"
+                },
+                "id": "CRAVE_2022",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:CRAVE_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CRAVE_2022(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Crave Consultation 2023",
+                "names": {
+                    "en": "Crave Consultation 2023"
+                },
+                "id": "CRAVE_2023",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:CRAVE_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CRAVE_2023(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Crave Consultation 2024",
+                "names": {
+                    "en": "Crave Consultation 2024"
+                },
+                "id": "CRAVE_2024",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:CRAVE_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:CRAVE_2024(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "[DRAFT] ECD",
+                "names": {
+                    "en": "[DRAFT] ECD"
+                },
+                "id": "DRAFT_ECD",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:EARLY_CHILD_DEV(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:DRAFT_ECD(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "[DRAFT] Global hazard exposure",
+                "names": {
+                    "en": "[DRAFT] Global hazard exposure"
+                },
+                "id": "DRAFT_HAZARD_EXPOSURE",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:DRAFT_HAZARD_EXPOSURE(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:DRAFT_HAZARD_EXPOSURE(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "DRAFT PT Child Marriage",
+                "names": {
+                    "en": "DRAFT PT Child Marriage"
+                },
+                "id": "PT_CM_DRAFT",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:PT_CM(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:PT_CM_DRAFT(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Child Marriage - Subnational",
+                "names": {
+                    "en": "Child Marriage - Subnational"
+                },
+                "id": "PT_CM_SUBNATIONAL",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:PT_CM_SUBNAT(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:PT_CM_SUBNATIONAL(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "PT Child Marriage Subnat 2",
+                "names": {
+                    "en": "PT Child Marriage Subnat 2"
+                },
+                "id": "PT_CM_SUBNATIONAL2",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:PT_CM_SUBNAT_2(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:PT_CM_SUBNATIONAL2(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "PT_DRAFT do not use",
+                "names": {
+                    "en": "PT_DRAFT do not use"
+                },
+                "description": "A draft dataflow to test data. Do not use",
+                "descriptions": {
+                    "en": "A draft dataflow to test data. Do not use"
+                },
+                "id": "PT_DRAFT",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:CHILD_PROTECTION(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:PT_DRAFT(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "SDG consultation 2020",
+                "names": {
+                    "en": "SDG consultation 2020"
+                },
+                "id": "SDG_CONSULT_2020_1",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:SDG_CONS_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:SDG_CONSULT_2020_1(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "SDG Consultation 2021",
+                "names": {
+                    "en": "SDG Consultation 2021"
+                },
+                "id": "SDG_CONSULT_2021",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:SDG_CONS_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:SDG_CONSULT_2021(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "SDG consultation 2022",
+                "names": {
+                    "en": "SDG consultation 2022"
+                },
+                "id": "SDG_CONSULT_2022",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:SDG_CONS_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:SDG_CONSULT_2022(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "SDG consultation 2023",
+                "names": {
+                    "en": "SDG consultation 2023"
+                },
+                "id": "SDG_CONSULT_2023",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:SDG_CONS_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:SDG_CONSULT_2023(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "SDG consultation 2024",
+                "names": {
+                    "en": "SDG consultation 2024"
+                },
+                "id": "SDG_CONSULT_2024",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:SDG_CONS_2020_1(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:SDG_CONSULT_2024(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "SOWC data snapshot 2023",
+                "names": {
+                    "en": "SOWC data snapshot 2023"
+                },
+                "description": "Taken on 2 Feb 2023",
+                "descriptions": {
+                    "en": "Taken on 2 Feb 2023"
+                },
+                "id": "SOWC_DATA_SNAPSHOT_2023",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_DRAFT:SOWC_DATA_SNAPSHOT_2023(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:SOWC_DATA_SNAPSHOT_2023(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Wash Household subnational for GIS visualization",
+                "names": {
+                    "en": "Wash Household subnational for GIS visualization"
+                },
+                "id": "WASH_HOUSEHOLD_SUBNAT_GIS",
+                "version": "1.0",
+                "agencyID": "UNICEF_DRAFT",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:WASH_HOUSEHOLD_SUBNAT(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_DRAFT:WASH_HOUSEHOLD_SUBNAT_GIS(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "LACRO Data Portal",
+                "names": {
+                    "en": "LACRO Data Portal"
+                },
+                "id": "LACRO_DATA_PORTAL_TEST",
+                "annotations": [
+                    {
+                        "id": "LACRO_DEF_PIVOT_SECTION",
+                        "title": "REF_AREA",
+                        "type": "LAYOUT_ROW_SECTION"
+                    },
+                    {
+                        "id": "LACRO_DEF_PIVOT_ROWS",
+                        "title": "INDICATOR,SEX",
+                        "type": "LAYOUT_ROW"
+                    },
+                    {
+                        "id": "LACRO_DEF_PIVOT_COLS",
+                        "title": "TIME_PERIOD",
+                        "type": "LAYOUT_COLUMN"
+                    }
+                ],
+                "version": "1.0",
+                "agencyID": "UNICEF_LACRO",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF_LACRO:DSD_UNICEF_LACRO_LACRO_DATA_PORTAL_TEST(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_LACRO:LACRO_DATA_PORTAL_TEST(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "[Test] CME Cause of death",
+                "names": {
+                    "en": "[Test] CME Cause of death"
+                },
+                "description": "Test cause of death, delete",
+                "descriptions": {
+                    "en": "Test cause of death, delete"
+                },
+                "id": "CME_CAUSE_OF_DEATH_TEST",
+                "version": "1.0",
+                "agencyID": "UNICEF_TEST",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:CME_CAUSE_OF_DEATH_2(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_TEST:CME_CAUSE_OF_DEATH_TEST(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "CME TEST Country profiles",
+                "names": {
+                    "en": "CME TEST Country profiles"
+                },
+                "id": "CME_TEST_COUNTRY_PROFILES_DATA",
+                "version": "1.0",
+                "agencyID": "UNICEF_TEST",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:CME_COUNTRY_PROFILES(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_TEST:CME_TEST_COUNTRY_PROFILES_DATA(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Test dataflow",
+                "names": {
+                    "en": "Test dataflow"
+                },
+                "description": "This dataflow is used to test new features",
+                "descriptions": {
+                    "en": "This dataflow is used to test new features"
+                },
+                "id": "CME_TEST_DATAFLOW",
+                "version": "1.0",
+                "agencyID": "UNICEF_TEST",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:DSD_CME_2021_WQ(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_TEST:CME_TEST_DATAFLOW(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "[Test] Dataflow version",
+                "names": {
+                    "en": "[Test] Dataflow version"
+                },
+                "description": "Can be deleted, used to test multiple dataflows version",
+                "descriptions": {
+                    "en": "Can be deleted, used to test multiple dataflows version"
+                },
+                "id": "DATAFLOW_VERSIONS",
+                "version": "1.1",
+                "agencyID": "UNICEF_TEST",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:DSD_AGGREGATE(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_TEST:DATAFLOW_VERSIONS(1.1)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "API test",
+                "names": {
+                    "en": "API test"
+                },
+                "description": "Used to test the API crud operations.\nCan be deleted when finished",
+                "descriptions": {
+                    "en": "Used to test the API crud operations.\nCan be deleted when finished"
+                },
+                "id": "DP_API_TEST",
+                "version": "1.0",
+                "agencyID": "UNICEF_TEST",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:MIGRATION(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_TEST:DP_API_TEST(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "SDG Progress assessment Test",
+                "names": {
+                    "en": "SDG Progress assessment Test"
+                },
+                "id": "SDG_PROG_ASSESSMENT_TEST",
+                "version": "1.0",
+                "agencyID": "UNICEF_TEST",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNICEF:SDG_PROGRESS_ASSESSMENT_2023(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNICEF_TEST:SDG_PROG_ASSESSMENT_TEST(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "UNPD Demography",
+                "names": {
+                    "en": "UNPD Demography"
+                },
+                "description": "Demography data mirrored from UNPD",
+                "descriptions": {
+                    "en": "Demography data mirrored from UNPD"
+                },
+                "id": "UNPD_DEMOGRAPHY",
+                "version": "1.0",
+                "agencyID": "UNPD",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNPD:UNPD_DEMO(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNPD:UNPD_DEMOGRAPHY(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Projection Demography data mirrored from UNPD",
+                "names": {
+                    "en": "Projection Demography data mirrored from UNPD"
+                },
+                "id": "UNPD_DM_PROJECTIONS",
+                "version": "1.0",
+                "agencyID": "UNPD",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=UNPD:UNPD_DEMO(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=UNPD:UNPD_DM_PROJECTIONS(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "ECCAS",
+                "names": {
+                    "en": "ECCAS"
+                },
+                "id": "WCARO_ECCAS",
+                "version": "1.0",
+                "agencyID": "WCARO",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=WCARO:WCARO_ECCAS(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=WCARO:WCARO_ECCAS(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            },
+            {
+                "name": "Zimbabwe Country Office",
+                "names": {
+                    "en": "Zimbabwe Country Office"
+                },
+                "id": "ZIMBABWE_CO",
+                "version": "1.0",
+                "agencyID": "ZIMBABWE_CO",
+                "isExternalReference": false,
+                "isFinal": false,
+                "structure": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=ZIMBABWE_CO:ZIMBABWE_CO(1.0)",
+                "links": [
+                    {
+                        "rel": "self",
+                        "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=ZIMBABWE_CO:ZIMBABWE_CO(1.0)",
+                        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/structure-message/tools/schemas/1.0/sdmx-json-structure-schema.json",
+                        "type": "dataflow",
+                        "hreflang": "en"
+                    }
+                ]
+            }
+        ]
+    }
+}
